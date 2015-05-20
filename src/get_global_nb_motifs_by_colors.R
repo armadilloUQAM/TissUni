@@ -1,10 +1,10 @@
-#### Function to create subgraph of each color
+#### Function to get motifs numbers by colors of a graph
 
 # requires SDDE and igraph packages and create_subgraph_by_colors function
 # input: an igraph with colors levels (V(graph)$tax) and the motif size
 # output: list of different attributes
 
-get_nb_motifs_by_colors<-function(graph,size){
+get_global_nb_motifs_by_colors<-function(graph,size){
 	subgraphs<-create_subgraph_by_colors(graph)
 	
 	if (size ==2){
@@ -28,5 +28,5 @@ get_nb_motifs_by_colors<-function(graph,size){
 }
 
 # À modifier:
-	#Ne prend que les sous-graphes connectés
-	#Prend tous les types de motifs mélangés
+	#Ne prend que les motifs connectés
+	#Option pour échantillonner au lieu de tout prendre

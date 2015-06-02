@@ -10,7 +10,7 @@
 			#nb_shared_motifs
 			#nb_unique_motifs
 
-# output: dataframe of attributes by isoclass type
+# output: dataframe of attributes by isoclass type (defined by igraph)
 
 get_nb_motifs_by_colors_and_types<-function(motifs.list){
 	if(motifs.list$size_motif ==3){

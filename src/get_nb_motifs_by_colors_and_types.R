@@ -45,7 +45,7 @@ return_infos<-function(motifs.list, position){
 		unique_col1=0
 		unique_col2=0
 		shared=0
-		ratio="N/A"
+		ratio="-2"
 	}
 	return(c(unique_col1,unique_col2,shared,total,ratio))
 }

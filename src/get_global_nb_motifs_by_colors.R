@@ -31,11 +31,11 @@ get_global_nb_motifs_by_colors<-function(graph,size_motif){
 		nb_unique_motifs= nb_unique_motifs_col1 + nb_unique_motifs_col2
 		nb_shared_motifs=length(total_motifs)-nb_unique_motifs
 		
-		if (nb_shared_motifs==0){
-			ratio=0
-		} else{
+		#if (nb_shared_motifs==0){
+		#	ratio=0
+		#} else{
 			ratio=nb_unique_motifs/length(total_motifs)
-		}
+		#}
 	}
 	
 	if (size_motif ==(3) || size_motif ==(4)){
@@ -45,11 +45,11 @@ get_global_nb_motifs_by_colors<-function(graph,size_motif){
 		nb_unique_motifs=graph.motifs.no(subgraphs$gcol1, size_motif)+graph.motifs.no(subgraphs$gcol2, size_motif)
 		nb_shared_motifs=graph.motifs.no(graph, size_motif)-nb_unique_motifs
 		
-		if (nb_shared_motifs==0){
-			ratio=0
-		} else{
+		#if (nb_shared_motifs==0){
+		#	ratio=0
+		#} else{
 			ratio=nb_unique_motifs/(graph.motifs.no(graph, size_motif))
-		}
+		#}
 	}
 	
 	return(list(ratio=ratio, size_motif=size_motif,total_motifs=total_motifs,unique_motifs_col1=unique_motifs_col1,unique_motifs_col2=unique_motifs_col2,nb_shared_motifs=nb_shared_motifs,nb_unique_motifs=nb_unique_motifs))

@@ -1,0 +1,27 @@
+---
+title: "Simulation Results"
+output: html_document
+---
+### Global Unifrac_res by motif size  
+  
+  
+#### Size 2 motif  
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif2_global_conn_10.png"/>
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif2_global_conn_25.png"/>
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif2_global_conn_50.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif2_global_conn_75.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif2_global_conn_100.png" />
+  
+#### Size 3 motif  
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif3_global_conn_10.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif3_global_conn_25.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif3_global_conn_50.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif3_global_conn_75.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif3_global_conn_100.png" />
+  
+#### Size 4 motif
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif4_global_conn_10.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif4_global_conn_25.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif4_global_conn_50.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif4_global_conn_75.png" />
+<img src="http://www.trex.uqam.ca/~hour_t/Graph_motif4_global_conn_100.png" />

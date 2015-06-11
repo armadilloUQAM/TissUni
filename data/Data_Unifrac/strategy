@@ -1,3 +1,21 @@
+=============================
+List of blast (command-line)
+=============================
+http://www.ncbi.nlm.nih.gov/books/NBK279675/
+
+=============================
+Commandes linux:
+=============================
+./makeblastdb -in esophagus.fasta -dbtype nucl -title BlastDatabase -out "blast.db" -parse_seqids
+
+ ./blastn -query esophagus.fasta -db "blast.db" -out "blast.results2.txt" -export_search_strategy strategy.txt -outfmt 6 -num_threads 12 -evalue "1e-5"
+
+Output is tabulat in the format: 'qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore'
+See: http://www.ncbi.nlm.nih.gov/books/NBK279675/ 
+
+==============================
+Commandes dans Armadillo:
+==============================
 cmd.exe /C executable\blast-2.2.25\bin\makeblastdb.exe -in "infile.fasta" -dbtype nucl -title BlastDatabase -out "blast.db" -parse_seqids                                       
 <-Program Output->
 	Running program...

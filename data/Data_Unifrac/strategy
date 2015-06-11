@@ -1,0 +1,23 @@
+cmd.exe /C executable\blast-2.2.25\bin\makeblastdb.exe -in "infile.fasta" -dbtype nucl -title BlastDatabase -out "blast.db" -parse_seqids                                       
+<-Program Output->
+	Running program...
+
+
+Building a new DB, current time: 06/10/2015 22:14:17
+New DB name:   blast.db
+New DB title:  BlastDatabase
+Sequence type: Nucleotide
+Keep Linkouts: T
+Keep MBits: T
+Maximum file size: 1073741824B
+Adding sequences from FASTA; added 710 sequences in 0.318949 seconds.
+	Program Exit Value: 0
+<-End Program Output ->
+	Parsing outputs... 
+Running Local Blast...
+Initialization...
+Running [Local Blast]
+	Checking program requirements...
+	Creating inputs...
+	Creating commandline...
+cmd.exe /C executable\blast-2.2.25\bin\blastn.exe -query query.txt -db "blast.db" -out "blast.results.txt" -num_descriptions 500 -num_alignments 500 -export_search_strategy strategy.txt     

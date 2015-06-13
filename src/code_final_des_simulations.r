@@ -182,8 +182,7 @@ make_graph<-function(result,titre_graph,sd10,sd25,sd50,mean10,mean25,mean50,posi
 
 make_graph_isoclass<-function(titre_graphe,position_legende,size_motif,list_isoclass,list_means_by_isoclass,list_sd_by_isoclass){
 	#list_means_by_isoclass is list_means_by_isoclass[[isoclass]][means], same for list_sd_by_isoclass
-	color<-c("green","deepskyblue","orange")
-	#"limegreen","blue","darkgoldenrod1","greenyellow","royalblue1","sienna1","olivedrab","cornflowerblue","darkorange1","darkgreen","slategray2","orangered","seagreen","cyan","red4"
+	color<-c("green","deepskyblue","orange","limegreen","blue","darkgoldenrod1","greenyellow","royalblue1","sienna1","olivedrab","cornflowerblue","darkorange1","darkgreen","slategray2","orangered","seagreen","cyan","red4")
 	
 	line_type=1:6
 	points_type=c(1,2,4,0,5,8)
@@ -200,13 +199,13 @@ make_graph_isoclass<-function(titre_graphe,position_legende,size_motif,list_isoc
 				segments(c(10,25,50,100)-1, list_means_by_isoclass[[1]][[1]]+list_sd_by_isoclass[[1]][[1]], c(10,25,50,100)+1, list_means_by_isoclass[[1]][[1]]+list_sd_by_isoclass[[1]][[1]], col=color[1])
 			}
 			else{
-				points(c(10,25,50,100), list_means_by_isoclass[[i]][[j]], type="b", lty=line_type[i], col=color[i*j], pch=points_type[i])
+				points(c(10,25,50,100), list_means_by_isoclass[[i]][[j]], type="b", lty=line_type[i], col=color[((i-1)*3)+j], pch=points_type[i])
 
-				segments(c(10,25,50,100), list_means_by_isoclass[[i]][[j]]-list_sd_by_isoclass[[i]][[j]], c(10,25,50,100), list_means_by_isoclass[[i]][[j]]+list_sd_by_isoclass[[i]][[j]], col=color[i*j])
+				segments(c(10,25,50,100), list_means_by_isoclass[[i]][[j]]-list_sd_by_isoclass[[i]][[j]], c(10,25,50,100), list_means_by_isoclass[[i]][[j]]+list_sd_by_isoclass[[i]][[j]], col=color[((i-1)*3)+j])
 
-				segments(c(10,25,50,100)-1, list_means_by_isoclass[[i]][[j]]-list_sd_by_isoclass[[i]][[j]],  c(10,25,50,100)+1, list_means_by_isoclass[[i]][[j]]-list_sd_by_isoclass[[i]][[j]], col=color[i*j])
+				segments(c(10,25,50,100)-1, list_means_by_isoclass[[i]][[j]]-list_sd_by_isoclass[[i]][[j]],  c(10,25,50,100)+1, list_means_by_isoclass[[i]][[j]]-list_sd_by_isoclass[[i]][[j]], col=color[((i-1)*3)+j])
 
-				segments(c(10,25,50,100)-1, list_means_by_isoclass[[i]][[j]]+list_sd_by_isoclass[[i]][[j]], c(10,25,50,100)+1, list_means_by_isoclass[[i]][[j]]+list_sd_by_isoclass[[i]][[j]], col=color[i*j])
+				segments(c(10,25,50,100)-1, list_means_by_isoclass[[i]][[j]]+list_sd_by_isoclass[[i]][[j]], c(10,25,50,100)+1, list_means_by_isoclass[[i]][[j]]+list_sd_by_isoclass[[i]][[j]], col=color[((i-1)*3)+j])
 			}
 		}
 	}
@@ -647,6 +646,8 @@ isoclass9_sd<-list(calcul_sd_or_mean(sd,isoclass9,100,10),calcul_sd_or_mean(sd,i
 isoclass10_sd<-list(calcul_sd_or_mean(sd,isoclass10,100,10),calcul_sd_or_mean(sd,isoclass10,100,25),calcul_sd_or_mean(sd,isoclass10,100,50))
 list_means_by_isoclass_4<-list(isoclass4_mean,isoclass6_mean,isoclass7_mean,isoclass8_mean,isoclass9_mean,isoclass10_mean)
 list_sd_by_isoclass_4<-list(isoclass4_sd,isoclass6_sd,isoclass7_sd,isoclass8_sd,isoclass9_sd,isoclass10_sd)
+
+# Only isoclass10 has values other than NaN
 
 png(file="Figures_simulation2/Graph_types_motif4_conn_100.png")
 make_graph_isoclass("Size 4 motif by isoclass \n Connectivity 100%", "bottomright",4,list_isoclass_4,list_means_by_isoclass_4,list_sd_by_isoclass_4)

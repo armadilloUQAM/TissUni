@@ -1,3 +1,23 @@
+#======================================
+#=    Les valeurs d'unifrac_res à NaN
+#======================================
+
+#=== Récupérer les résultats
+load("GitHub/TissUni/examples/R_objects_sim/R_objects_sim/list_resul_unifrac_simulation.r")
+
+unifrac2gb<-unifrac_res$unifrac2gb
+unifrac3gb<-unifrac_res$unifrac3gb
+unifrac4gb<-unifrac_res$unifrac4gb
+isoclass2<-unifrac_res$isoclass2
+isoclass3<-unifrac_res$isoclass3
+isoclass4<-unifrac_res$isoclass4
+isoclass6<-unifrac_res$isoclass6
+isoclass7<-unifrac_res$isoclass7
+isoclass8<-unifrac_res$isoclass8
+isoclass9<-unifrac_res$isoclass9
+isoclass10<-unifrac_res$isoclass10
+
+#=== Fonction pour récupérer les positions des valeurs NaN
 graphe_NA<-function(result){
 	l=0
 	position<-numeric(length(result))
@@ -14,6 +34,8 @@ graphe_NA<-function(result){
 	return(position)
 }
 
+#=== Liste des positions
+
 NaN_global4<-graphe_NA(which(unifrac4gb == "NaN"))
 NaN_isoclass2<-graphe_NA(which(isoclass2 == "NaN"))
 NaN_isoclass3<-graphe_NA(which(isoclass3 == "NaN"))
@@ -23,8 +45,6 @@ NaN_isoclass7<-graphe_NA(which(isoclass7 == "NaN"))
 NaN_isoclass8<-graphe_NA(which(isoclass8 == "NaN"))
 NaN_isoclass9<-graphe_NA(which(isoclass9 == "NaN"))
 NaN_isoclass10<-graphe_NA(which(isoclass10 == "NaN"))
-
-#=============== liste des positions avec les NaNs
 
 Liste de position motif 4 global: 1,6,11
 

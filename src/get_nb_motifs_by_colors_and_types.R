@@ -4,6 +4,8 @@
 		#It is a list of the following attributes:
 			#ratio
 			#size_motif 
+			#col1_tax
+			#col2_tax
 			#total_motifs 
 			#unique_motifs_col1 
 			#unique_motifs_col2 

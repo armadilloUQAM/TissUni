@@ -4,8 +4,8 @@
 # input: an igraph with colors levels (V(graph)$tax) and the motif size
 # output: list of different attributes
 
-get_global_nb_motifs_by_colors<-function(graph,size_motif){
-	subgraphs<-create_subgraph_by_colors(graph)
+get_global_nb_motifs_by_colors<-function(graph,size_motif, nom_col1, nom_col2){
+	subgraphs<-create_subgraph_by_colors(graph, nom_col1, nom_col2)
 	
 	if (size_motif ==(2)){
 		total_motifs=E(graph)
@@ -52,7 +52,7 @@ get_global_nb_motifs_by_colors<-function(graph,size_motif){
 		#}
 	}
 	
-	return(list(ratio=ratio, size_motif=size_motif,total_motifs=total_motifs,unique_motifs_col1=unique_motifs_col1,unique_motifs_col2=unique_motifs_col2,nb_shared_motifs=nb_shared_motifs,nb_unique_motifs=nb_unique_motifs))
+	return(list(ratio=ratio, size_motif=size_motif,col1_tax=subgraphs$col1,col2_tax=subgraphs$col2,total_motifs=total_motifs,unique_motifs_col1=unique_motifs_col1,unique_motifs_col2=unique_motifs_col2,nb_shared_motifs=nb_shared_motifs,nb_unique_motifs=nb_unique_motifs))
 }
 
 # À modifier:

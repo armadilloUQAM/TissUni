@@ -19,6 +19,7 @@ my $criteria= $ARGV[1];
 my $treshold= $ARGV[2];
 my %edges;
 my %tax;
+my $newfile="network_".$filename."_".$treshold.".txt";
 
 #= Validation des paramètres en ligne de commande
 unless ( -e $filename){
@@ -79,7 +80,7 @@ while(my $ligne = <IN_blast_result>){
 #file with edges in tabular format(node1, node2, edge weight)
 #file with taxa information for each node
 
-open(OUT_net, ">network.txt");
+open(OUT_net, ">$newfile");
 foreach my $key (keys %edges){
 	print OUT_net "$edges{$key}[0]	$edges{$key}[1]\n";
 }
@@ -90,3 +91,8 @@ close OUT_net;
 #	print OUT_tax "$key	$tax{$key}\n";
 #}
 #close OUT_tax;
+
+#append code to the beginning of R code file
+#path_to_blast.result_file=;
+#path_to_group_file=;
+# log file et output de r

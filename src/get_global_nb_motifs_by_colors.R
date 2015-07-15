@@ -9,6 +9,7 @@ get_global_nb_motifs_by_colors<-function(graph,size_motif, nom_col1, nom_col2){
 	
 	if (size_motif ==(2)){
 		total_motifs=E(graph)
+		nb_total_motifs=length(E(graph));
 		degree_col1<-degree(subgraphs$gcol1,v=V(subgraphs$gcol1))
 		degree_col2<-degree(subgraphs$gcol2,v=V(subgraphs$gcol2))
 		
@@ -34,12 +35,13 @@ get_global_nb_motifs_by_colors<-function(graph,size_motif, nom_col1, nom_col2){
 		#if (nb_shared_motifs==0){
 		#	ratio=0
 		#} else{
-			ratio=nb_unique_motifs/length(total_motifs)
+			ratio=nb_unique_motifs/nb_total_motifs
 		#}
 	}
 	
 	if (size_motif ==(3) || size_motif ==(4)){
 		total_motifs=graph.motifs(graph, size_motif)
+		nb_total_motifs=graph.motifs.no(graph, size_motif)
 		unique_motifs_col1=graph.motifs(subgraphs$gcol1, size_motif)
 		unique_motifs_col2=graph.motifs(subgraphs$gcol2, size_motif)
 		nb_unique_motifs=graph.motifs.no(subgraphs$gcol1, size_motif)+graph.motifs.no(subgraphs$gcol2, size_motif)
@@ -48,11 +50,12 @@ get_global_nb_motifs_by_colors<-function(graph,size_motif, nom_col1, nom_col2){
 		#if (nb_shared_motifs==0){
 		#	ratio=0
 		#} else{
-			ratio=nb_unique_motifs/(graph.motifs.no(graph, size_motif))
+			ratio=nb_unique_motifs/nb_total_motifs
 		#}
 	}
-	
-	return(list(ratio=ratio, size_motif=size_motif,col1_tax=subgraphs$col1,col2_tax=subgraphs$col2,total_motifs=total_motifs,unique_motifs_col1=unique_motifs_col1,unique_motifs_col2=unique_motifs_col2,nb_shared_motifs=nb_shared_motifs,nb_unique_motifs=nb_unique_motifs))
+	#Possible case if there is no motif at all present
+	if (nb_total_motifs==0) ratio=1;
+	return(list(ratio=ratio, size_motif=size_motif,col1_tax=subgraphs$col1,col2_tax=subgraphs$col2,total_motifs=total_motifs,unique_motifs_col1=unique_motifs_col1,unique_motifs_col2=unique_motifs_col2,nb_shared_motifs=nb_shared_motifs,nb_unique_motifs=nb_unique_motifs, nb_total_motifs=nb_total_motifs))
 }
 
 # À modifier:

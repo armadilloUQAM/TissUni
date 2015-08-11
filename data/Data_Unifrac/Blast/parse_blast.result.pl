@@ -10,28 +10,30 @@ use strict;
 use warnings;
 
 if (scalar @ARGV !=3){
-	die("usage : perl $0 blast.result.txt evalue_or_pident similarity_threshold \n");
+	die("usage : perl $0 blast.result.txt similarity_threshold group.file\n");
 }
 
 #= Déclaration des variables
 my $filename = $ARGV[0];
-my $criteria= $ARGV[1];
-my $treshold= $ARGV[2];
+my $treshold= $ARGV[1];
+my $groupfile= $ARGV[2];
 my %edges;
-my %tax;
+my @seq_list;
+my %noeud_present;
 my $newfile="network_".$filename."_".$treshold.".txt";
+my $singleton=$filename."_".$treshold."_singleton.txt";
 
 #= Validation des paramètres en ligne de commande
 unless ( -e $filename){
 	die ("$0: ERREUR: fichier manquant: $filename");
 }
 
-if ($criteria ne "evalue" && $criteria ne "pident"){
-	die("$0: ERREUR: entrer: \"evalue\" ou \"pident\"");
-}
-
 if ($treshold =~ /\D/){
 	die("$0: ERREUR: entrer un nombre");
+}
+
+unless ( -e $groupfile){
+	die ("$0: ERREUR: fichier manquant: $groupfile");
 }
 
 #= Parcours du fichier
@@ -47,24 +49,8 @@ while(my $ligne = <IN_blast_result>){
 		my $pident= $tab_ligne[2];
 		my $evalue= $tab_ligne[10];
 		my $pair=$qseid."_".$sseqid;
-		my $value;
 		
-		if($criteria eq "pident"){
-			$value=$pident;
-		}
-		else{
-			$value=$evalue;
-		}
-		
-		if(!exists($tax{$qseid})){
-			$n++;
-			$tax{$qseid}=$qseid;
-		}
-		if(!exists($tax{$sseqid})){
-			$n++;
-			$tax{$sseqid}=$sseqid;
-		}
-		if ($value> $treshold || $value == $treshold){
+		if ($pident> $treshold || $pident == $treshold){
 			if(!exists($edges{$qseid."_".$sseqid}) && !exists($edges{$sseqid."_".$qseid}) && $qseid ne $sseqid){
 				$edges{$pair}=[$qseid, $sseqid, $pident, $evalue];
 			}
@@ -91,6 +77,36 @@ close OUT_net;
 #	print OUT_tax "$key	$tax{$key}\n";
 #}
 #close OUT_tax;
+
+#= Création du fichier des noeuds n'ayant pas de lien
+
+				if (!exists $noeud_present{$qseid}){
+					$noeud_present{$qseid}=1;
+				}
+				
+				if (!exists $noeud_present{$sseqid}){
+					$noeud_present{$sseqid}=1;
+				}
+				
+open(IN_groups, $groupfile) || die($!);
+
+while(my $ligne=<IN_groups>){
+	chomp($ligne);
+	my @tab=split('\t', $ligne);
+	push(@seq_list, $tab[0]);
+	#print $seq_list[0]."\n";
+}
+close(IN_groups);
+
+open(OUT_sing, ">$singleton") || die($!);
+my $o=0;
+for(my $i=0; $i<scalar(@seq_list); $i++){
+	if(!exists $noeud_present{$seq_list[$i]}){
+		#print OUT_sing "$seq_list[$i] \n";
+		print "$seq_list[$i] \n";
+	}
+}
+close(OUT_sing);
 
 #append code to the beginning of R code file
 #path_to_blast.result_file=;
